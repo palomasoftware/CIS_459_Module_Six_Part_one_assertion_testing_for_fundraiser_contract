@@ -39,3 +39,15 @@ newTotalDonations 1000000000000000000n
 
 ubuntu@ip-172-31-26-110:~/fundraiser/test$
 
+
+
+
+https://stackoverflow.com/questions/70955495/how-do-i-accurately-convert-eth-to-wei-when-sending-transaction
+https://stackoverflow.com/questions/76912605/hardhat-deployed-is-not-a-function
+https://medium.com/@lee.marreros/the-complete-hardhat-testing-guide-for-secure-smart-contracts-a8271893606c
+https://stackoverflow.com/questions/70955495/how-do-i-accurately-convert-eth-to-wei-when-sending-transaction
+https://ethereum.stackexchange.com/questions/120200/web3-utils-towei1-ether-appears-as-4722-36648287-ether-in-metamask-notifi
+https://stackoverflow.com/questions/72936183/how-to-directly-test-a-solidity-library-with-hardhat-chai
+https://stackoverflow.com/questions/76536790/cannot-read-properties-of-undefined-reading-parseunits-hardhat-js
+https://github.com/RedSquirrelTech/hoscdev/blob/master/chapter-6/fundraiser/test/fundraiser_test.js
+
