@@ -12,3 +12,4 @@ npx hardhat node
 npx hardhat ignition deploy ./ignition/modules/Lock.js
 ```
 # CIS459_Modulde_Six_Part_One
+# CIS_459_Module_Six_Part_one_assertion_testing_for_fundraiser_contract
