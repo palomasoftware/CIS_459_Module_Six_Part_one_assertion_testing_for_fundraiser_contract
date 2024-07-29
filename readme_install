@@ -1,0 +1,41 @@
+
+ubuntu@ip-172-31-26-110:~/fundraiser/test$ vi fundraiser_test.js
+ubuntu@ip-172-31-26-110:~/fundraiser/test$ npx hardhat test
+
+
+  An even higher test
+    Fundraiser
+value =  1000000000000000000n
+      ✔ Contract has been deployed successfully (883ms)
+    making donations
+just before my call
+value =  28900000000000000n
+      ✔ increases myDonationsCountx
+just before my call
+value1 1000000000000000000n
+values[0] undefined
+      ✔ includes donation in myDonations
+just before my call
+currentTotalDonations 0n
+newTotalDonations 1000000000000000000n
+      ✔ increases totaldonations amount
+      setBeneficiary
+        ✔ updated beneficiary when called by owner account
+        1) throws and error when called from a non-owner account
+
+
+  5 passing (934ms)
+  1 failing
+
+  1) An even higher test
+       making donations
+         setBeneficiary
+           throws and error when called from a non-owner account:
+     AssertionError: expected undefined to equal 'Ownable: caller is not the owner'
+      at Context.<anonymous> (fundraiser_test.js:143:32)
+      at processImmediate (node:internal/timers:478:21)
+
+
+
+ubuntu@ip-172-31-26-110:~/fundraiser/test$
+

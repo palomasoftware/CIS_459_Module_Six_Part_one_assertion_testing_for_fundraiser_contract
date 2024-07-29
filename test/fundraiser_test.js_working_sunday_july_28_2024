@@ -1,0 +1,183 @@
+const { expect } = require("chai");
+const { loadFixture }  = require("@nomicfoundation/hardhat-network-helpers")
+//contract("Fundraiser", accounts =>{
+const { web3}  = require("web3");
+//const { ethers }= require("ethers");
+
+describe("An even higher test", async function() {
+
+let fundraiser = null;
+//  beforeEach(async function() {
+async function runEveryTime(){
+  const owners = await ethers.getSigners();
+
+
+	  const name =  "Beneficiary Name";
+  const url = "beneficiaryname.org";
+  const imageURL = "https://placekitten.com/600/350";
+  const description = "Beneficiary description";
+  const beneficiary = owners[1];
+  const owner = owners[0];
+
+ const fundr = await ethers.getContractFactory("Fundraiser");
+ const fundraiser = await fundr.deploy(name,url,imageURL,description, beneficiary, owner);
+ await fundraiser.waitForDeployment();
+
+return { fundraiser }
+  };
+
+
+
+  describe("making junk donations",  function()  {
+//  const { fundraiser }  = await loadFixture(runEveryTime);
+//    const accounts = await ethers.getSigners();
+//    const value = web3.utils.toWei('0.0289');
+//    const donor = accounts[2];
+    it("increases myDonationsCountx", async function()  {
+   
+//https://stackoverflow.com/questions/70955495/how-do-i-accurately-convert-eth-to-wei-when-sending-transaction
+    const accounts = await ethers.getSigners();
+// /   const value = web3.utils.toWei('0.0289');
+
+console.log("just before my call")
+	    const value = await ethers.parseUnits('0.0289','ether')
+//const value  = ethers.formatUnits("0.0289","ether")
+console.log("value = ",value)
+
+	    const donor = accounts[2];
+
+  const { fundraiser }  = await loadFixture(runEveryTime);
+
+
+	    const currentDonationsCount = await fundraiser.myDonationsCount(
+        {from: donor}
+      );
+      await fundraiser.donate({from: donor, value});
+      const newDonationsCount = await fundraiser.myDonationsCount({from: donor});
+      expect(1).to.equal(newDonationsCount - currentDonationsCount);
+    });
+
+  });
+
+
+//describe("An even higher test", function() { 
+
+//describe(" A higher level", function() { 
+describe("Fundraiser9", function () {
+
+
+  it("Contract has been deployed successfully", async function () {
+
+  const { fundraiser }  = await loadFixture(runEveryTime);
+  const accounts = await ethers.getSigners();
+
+  const owners = await ethers.getSigners();
+  const name =  "Beneficiary Name";
+  const url = "beneficiaryname.org";
+  const imageURL = "https://placekitten.com/600/350";
+  const description = "Beneficiary description";
+  const beneficiary = owners[1];
+  const owner = owners[0];
+
+ const hh = await ethers.getContractFactory("Fundraiser");
+
+	  const hhh = await hh.deploy(name,url,imageURL,description, beneficiary, owner);
+
+
+
+	  expect(hhh , "contract has been deployed");
+          console.log(await hhh.name());
+          expect(await fundraiser.name()).to.equal("Beneficiary Name");
+          expect(await hhh.url()).to.equal("beneficiaryname.org");
+	  expect(await hhh.imageURL()).to.equal("https://placekitten.com/600/350");
+	  expect(await hhh.description()).to.equal("Beneficiary description");
+
+
+
+
+
+
+  });
+
+
+ });
+//});
+
+
+
+
+
+  describe("setBeneficiary", async function()  {
+
+    it("updated beneficiary when called by owner account", async function() {
+ 
+	  const accounts = await ethers.getSigners();
+          const owners   = await ethers.getSigners();
+
+	  const newBeneficiary = accounts[2];
+
+          const name =  "Beneficiary Name";
+  const url = "beneficiaryname.org";
+  const imageURL = "https://placekitten.com/600/350";
+  const description = "Beneficiary description";
+  const beneficiary = owners[1];
+  const owner = owners[0];
+ const fundr = await ethers.getContractFactory("Fundraiser");
+ const fundraiser = await fundr.deploy(name,url,imageURL,description, beneficiary, owner);
+
+
+//    it("updated beneficiary when called by owner account", async function() {
+      await fundraiser.setBeneficiary(newBeneficiary, {from: owner});
+      const actualBeneficiary = await fundraiser.beneficiary();
+      expect(actualBeneficiary).to.equal(newBeneficiary);
+    });
+ 
+    it("throws and error when called from a non-owner account", async function()  {
+      try {
+        await fundraiser.setBeneficiary(newBeneficiary, {from: accounts[3]});
+        expect.fail("withdraw was not restricted to owners")
+      } catch(err) {
+        const expectedError = "Ownable: caller is not the owner"
+        const actualError = err.reason;
+        expect(actualError).to.equal( expectedError)
+      }
+    });
+
+
+
+
+
+  
+
+  describe("making donations", async function()  {
+  const { fundraiser }  = await loadFixture(runEveryTime);
+    const accounts = await ethers.getSigners();
+    const value = web3.utils.toWei('0.0289');
+    const donor = accounts[2];
+    it("increases myDonationsCount", async function()  {
+      const currentDonationsCount = await fundraiser.myDonationsCount(
+        {from: donor}
+      );
+      await fundraiser.donate({from: donor, value});
+      const newDonationsCount = await fundraiser.myDonationsCount({from: donor});
+      expect(1).to.equal(newDonationsCount - currentDonationsCount);
+    });
+
+  });
+
+
+
+
+
+
+//});
+
+
+//});
+
+});
+
+});
+
+
+

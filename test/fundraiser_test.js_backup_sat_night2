@@ -1,0 +1,146 @@
+const { expect } = require("chai");
+
+//contract("Fundraiser", accounts =>{
+
+
+
+describe("An even higher test", function() {
+
+let fundraiser = null;
+//const accounts = await ethers.getSigners();
+  beforeEach(async () => {
+//    fundraiser = await FundraiserContract.new(
+  //    name,
+//      url,
+//      imageURL,
+//      description,
+//      beneficiary,
+//      owner 
+//    )
+
+
+  const accounts = await ethers.getSigners();
+
+  const owners = await ethers.getSigners();
+
+
+	  const name =  "Beneficiary Name";
+  const url = "beneficiaryname.org";
+  const imageURL = "https://placekitten.com/600/350";
+  const description = "Beneficiary description";
+  const beneficiary = owners[1];
+  const owner = owners[0];
+
+ const fundr = await ethers.getContractFactory("Fundraiser");
+ const fundraiser = await fundr.deploy(name,url,imageURL,description, beneficiary, owner);
+// await fundraiser.deployed();
+
+
+  });
+
+
+
+
+
+//describe("An even higher test", function() { 
+
+//describe(" A higher level", function() { 
+//describe("Fundraiser", function () {
+
+
+  it("Contract has been deployed successfully", async function () {
+
+
+  const accounts = await ethers.getSigners();
+
+  const owners = await ethers.getSigners();
+  const name =  "Beneficiary Name";
+  const url = "beneficiaryname.org";
+  const imageURL = "https://placekitten.com/600/350";
+  const description = "Beneficiary description";
+  const beneficiary = owners[1];
+  const owner = owners[0];
+
+
+
+
+
+//  it("Contract has been deployed successfully", async function () {
+
+   // const hardhatHello = await ethers.deployContract("Fundraiser",
+   //   beneficiary,
+   //   owner );
+
+    const hh = await ethers.getContractFactory("Fundraiser");
+    const hhh = await hh.deploy(name,url,imageURL,description, beneficiary, owner);
+   // await hhh.deployed();
+//	  const hardhatHello = await ethers.deployContract("Fundraiser",
+//     name,
+//      url,
+//      imageURL,
+//      description,
+//      beneficiary,
+//      owner );
+
+
+
+
+	  expect(hhh , "contract has been deployed");
+          console.log(await hhh.name());
+          expect(await hhh.name()).to.equal("Beneficiary Name");
+          expect(await hhh.url()).to.equal("beneficiaryname.org");
+	  expect(await hhh.imageURL()).to.equal("https://placekitten.com/600/350");
+	  expect(await hhh.description()).to.equal("Beneficiary description");
+
+
+
+
+
+
+//  });
+
+
+///  });
+//});
+
+
+
+
+
+//  describe("setBeneficiary", () => {
+
+    it("updated beneficiary when called by owner account", async function() {
+ 
+	  const accounts = await ethers.getSigners();
+          const owners   = await ethers.getSigners();
+
+	  const newBeneficiary = accounts[2];
+
+          const name =  "Beneficiary Name";
+  const url = "beneficiaryname.org";
+  const imageURL = "https://placekitten.com/600/350";
+  const description = "Beneficiary description";
+  const beneficiary = owners[1];
+  const owner = owners[0];
+// const fundr = await ethers.getContractFactory("Fundraiser");
+// const fundraiser = await fundr.deploy(name,url,imageURL,description, beneficiary, owner);
+
+
+//    it("updated beneficiary when called by owner account", async function() {
+      await fundraiser.setBeneficiary(newBeneficiary, {from: owner});
+      const actualBeneficiary = await fundraiser.beneficiary();
+      expect(actualBeneficiary).to.equal(newBeneficiary);
+    });
+  });
+
+//});
+
+
+//});
+
+});
+
+
+
+
+

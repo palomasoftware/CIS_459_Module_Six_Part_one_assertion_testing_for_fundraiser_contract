@@ -1,0 +1,54 @@
+const { expect } = require("chai");
+
+describe("Fundraiser", function () {
+
+
+  it("Contract has been deployed successfully", async function () {
+
+
+  const owners = await ethers.getSigners();
+  const name =  "Beneficiary Name";
+  const url = "beneficiaryname.org";
+  const imageURL = "https://placekitten.com/600/350";
+  const description = "Beneficiary description";
+  const beneficiary = owners[1];
+  const owner = owners[0];
+
+
+
+
+
+//  it("Contract has been deployed successfully", async function () {
+
+   // const hardhatHello = await ethers.deployContract("Fundraiser",
+   //   beneficiary,
+   //   owner );
+
+    const hh = await ethers.getContractFactory("Fundraiser");
+	  const hhh = await hh.deploy(beneficiary, owner);
+   // await hhh.deployed();
+//	  const hardhatHello = await ethers.deployContract("Fundraiser",
+//     name,
+//      url,
+//      imageURL,
+//      description,
+//      beneficiary,
+//      owner );
+
+
+
+
+	  expect(hhh , "contract has been deployed");
+  });
+
+
+  });
+
+
+
+
+
+
+
+
+
